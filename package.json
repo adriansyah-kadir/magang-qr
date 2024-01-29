@@ -28,10 +28,27 @@
   "type": "module",
   "dependencies": {
     "@prisma/client": "5.8.1",
+    "@types/node": "^20.11.9",
+    "bits-ui": "^0.16.0",
+    "clsx": "^2.1.0",
+    "cmdk-sv": "^0.0.13",
     "flowbite-svelte-icons": "^1.0.3",
+    "formsnap": "^0.4.3",
     "html5-qrcode": "^2.3.8",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.1",
+    "lucide-svelte": "^0.316.0",
+    "pdf-creator-node": "^2.3.5",
+    "pdf-lib": "^1.17.1",
+    "pdfmake": "^0.2.9",
     "prisma": "^5.8.1",
     "qrcode": "^1.5.3",
-    "qrcode-generator": "^1.4.4"
+    "qrcode-generator": "^1.4.4",
+    "radix-icons-svelte": "^1.2.1",
+    "sveltekit-superforms": "^1.13.4",
+    "tailwind-merge": "^2.2.1",
+    "tailwind-variants": "^0.1.20",
+    "zod": "^3.22.4",
+    "zod-form-data": "^2.0.2"
   }
 }

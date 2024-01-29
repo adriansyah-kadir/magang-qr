@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Spinner } from "flowbite-svelte";
   import { Html5Qrcode } from "html5-qrcode";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { fade } from "svelte/transition";
 
   export let onScan: (arg0: string) => void = () => {};
@@ -28,6 +28,10 @@
         ready = true;
         onReady();
       });
+    return async () => {
+      await html5Qrcode.stop();
+      html5Qrcode.clear();
+    };
   }
 
   onMount(init);

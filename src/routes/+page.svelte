@@ -1,5 +1,6 @@
 <script lang="ts">
   import QrScanner from "$lib/components/QrScanner.svelte";
+  import { Button } from "$lib/components/ui/button";
   import { ArrowKeyRight, GradientButton, Spinner } from "flowbite-svelte";
 
   let scanning: boolean = true;
@@ -9,20 +10,30 @@
 
 <div class="p-5 max-w-lg m-auto">
   <QrScanner
+    onReady={() => {
+      preparing = false;
+    }}
     onScan={(ev) => {
       scanning = false;
       data = ev;
     }}
   />
-  <GradientButton color="purpleToBlue" class="w-full mt-10">
+  <Button
+    class="w-full mt-5"
+    on:click={() => {
+      if (data) {
+        location.assign(data);
+      }
+    }}
+  >
     {#if preparing}
-      <Spinner class="me-3" />
+      <div class="border w-5 h-5 rounded-full border-b-black animate-spin mr-3"></div>
       Initializing...
     {:else if scanning}
-      <Spinner class="me-3" />
+      <div class="border w-5 h-5 rounded-full border-b-black animate-spin mr-3"></div>
       Scanning...
     {:else}
       Check <ArrowKeyRight />
     {/if}
-  </GradientButton>
+  </Button>
 </div>

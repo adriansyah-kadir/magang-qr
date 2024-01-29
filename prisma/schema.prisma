@@ -10,29 +10,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
+model User {
+  id       Int      @id @default(autoincrement())
   username String
   password String
-  session Session?
+  session  Session?
 }
 
-model Session{
-  id String @id @default(uuid())
-  user User @relation(references: id, fields: userId)
-  userId Int @unique
+model Session {
+  id     String @id @default(uuid())
+  user   User   @relation(references: id, fields: userId)
+  userId Int    @unique
 }
 
-model Data{
-  id String @id @default(uuid())
+model Data {
+  id    String @id @default(uuid())
   label String
   files File[]
 }
 
-model File{
-  id String @id @default(uuid())
+model File {
+  id       String @id @default(uuid())
   filename String
-  url String
-  data Data @relation(references: id, fields: dataId)
-  dataId String
+  url      String
+  data     Data   @relation(references: id, fields: dataId)
+  dataId   String
+}
+
+model Map {
+  id        String      @id @default(uuid())
+  label     String
+  daftarIsi DaftarIsi[]
+}
+
+model DaftarIsi {
+  id    Int     @id @default(autoincrement())
+  tahun Int
+  map   Map     @relation(references: id, fields: mapId)
+  mapId String
+  surat Surat[]
+}
+
+model Surat {
+  id            Int       @id @default(autoincrement())
+  daftarIsi     DaftarIsi @relation(references: id, fields: daftarIsiId)
+  daftarIsiId   Int
+  asalSurat     String
+  nomorTerima   String
+  tanggalTerima String
+  nomor         String
+  tanggal       String
+  perihal       String
 }
